@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #050506;
+  --color-coal: #0a0b0d;
+  --color-steel: #121317;
+  --color-edge: rgba(255, 255, 255, 0.09);
+  --color-volt: #ff6a13;
+  --color-volt-soft: #ff8f45;
+  --color-arc: #4aa8ff;
+  --color-bone: #f2efea;
+  --color-mist: #9b9ca3;
+  --font-display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: #050506;
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: transparent;
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-volt);
+  color: #000;
+}
+
+/* subtle film grain over everything */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ---------- typography helpers ---------- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.005em;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+}
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(242, 239, 234, 0.35);
+}
+
+.text-glow {
+  text-shadow: 0 0 40px rgba(255, 106, 19, 0.55), 0 0 90px rgba(255, 106, 19, 0.25);
+}
+
+/* ---------- reveal system ---------- */
+.js [data-r] {
+  opacity: 0;
+}
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.mask-line > span {
+  display: block;
+  will-change: transform;
+}
+.js .mask-line > span {
+  visibility: hidden;
+}
+
+/* ---------- animations ---------- */
+@keyframes flow {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+@keyframes scan-bar {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+@keyframes scan-reveal {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    clip-path: inset(0 0 0% 0);
+  }
+}
+@keyframes scan-x {
+  0% {
+    left: -4%;
+  }
+  100% {
+    left: 104%;
+  }
+}
+
+.trace-flow {
+  stroke-dasharray: 70 930;
+  animation: flow 5s linear infinite;
+}
+
+/* ---------- circuit board interactions ---------- */
+.board [data-for] {
+  transition: stroke 0.4s, opacity 0.4s, filter 0.4s;
+}
+.board[data-active="transformer"] [data-for~="transformer"],
+.board[data-active="capacitors"] [data-for~="capacitors"],
+.board[data-active="mosfets"] [data-for~="mosfets"],
+.board[data-active="control"] [data-for~="control"],
+.board[data-active="output"] [data-for~="output"],
+.board[data-active="fan"] [data-for~="fan"] {
+  stroke: var(--color-volt);
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(255, 106, 19, 0.9));
+}
+
+/* ---------- no-WebGL fallback ---------- */
+.hero-fallback {
+  display: none;
+}
+html[data-webgl="0"] .hero-fallback {
+  display: block;
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-r] {
+    opacity: 1;
+  }
+  .js .mask-line > span {
+    visibility: visible;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* focus */
+:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+/* animated pulse that travels along the active traces */
+.board [data-flow] {
+  stroke: #ffd9bd !important;
+}
+.board[data-active="transformer"] [data-flow][data-for~="transformer"],
+.board[data-active="capacitors"] [data-flow][data-for~="capacitors"],
+.board[data-active="mosfets"] [data-flow][data-for~="mosfets"],
+.board[data-active="control"] [data-flow][data-for~="control"],
+.board[data-active="output"] [data-flow][data-for~="output"],
+.board[data-active="fan"] [data-flow][data-for~="fan"] {
+  opacity: 1;
+}
