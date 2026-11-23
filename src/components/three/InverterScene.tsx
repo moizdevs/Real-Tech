@@ -53,8 +53,9 @@ function Rig({ reduced }: { reduced: boolean }) {
     spinAngle.current += (nearest - spinAngle.current) * Math.min(1, delta * 2.2) * (1 - s.spin);
 
     const sway = Math.sin(t * 0.5) * s.sway;
-    const scrollTurn = s.scroll * Math.PI * 1.6;
-    const targetYaw = spinAngle.current + sway + scrollTurn + s.mx * 0.35;
+    // swing around the front so the display is always readable, like a product shot
+    const swing = Math.sin(t * 0.38) * 0.55 * Math.max(s.spin, 0.25);
+    const targetYaw = swing + sway + s.mx * 0.35;
     const targetPitch = s.rotX + s.my * 0.12;
     i.rotation.y += (targetYaw - i.rotation.y) * Math.min(1, delta * 4);
     i.rotation.x += (targetPitch - i.rotation.x) * Math.min(1, delta * 4);
@@ -64,7 +65,7 @@ function Rig({ reduced }: { reduced: boolean }) {
     camera.position.y += (0.2 - s.my * 0.25 - camera.position.y) * Math.min(1, delta * 2);
     camera.lookAt(0, 0, 0);
 
-    if (keyLight.current) keyLight.current.intensity = 60 * (0.5 + s.glow * 0.5);
+    if (keyLight.current) keyLight.current.intensity = 140 * (0.6 + s.glow * 0.4);
 
     inv();
   });
@@ -80,15 +81,15 @@ function Rig({ reduced }: { reduced: boolean }) {
       </group>
       <spotLight
         ref={keyLight}
-        position={[3, 5, 6]}
-        angle={0.5}
+        position={[3, 5, 7]}
+        angle={0.6}
         penumbra={1}
-        intensity={60}
+        intensity={140}
         color="#ffe2cc"
         distance={30}
         decay={2}
       />
-      <pointLight position={[-5, 1, -2]} intensity={40} color="#4aa8ff" distance={16} decay={2} />
+      <pointLight position={[-5, 1, 3]} intensity={25} color="#4aa8ff" distance={16} decay={2} />
       <pointLight position={[5, 0.5, -3]} intensity={55} color="#ff6a13" distance={16} decay={2} />
     </>
   );
@@ -108,12 +109,12 @@ export default function InverterScene({ lowPower, reduced }: Props) {
       style={{ pointerEvents: "none" }}
       aria-hidden="true"
     >
-      <ambientLight intensity={0.18} />
-      <Environment resolution={128} frames={1} environmentIntensity={0.7}>
-        <Lightformer form="rect" intensity={2.2} color="#ffffff" position={[0, 5, 2]} scale={[8, 1.5, 1]} />
-        <Lightformer form="rect" intensity={3} color="#ff6a13" position={[6, 0, -2]} rotation-y={-Math.PI / 2} scale={[6, 2, 1]} />
-        <Lightformer form="rect" intensity={2} color="#4aa8ff" position={[-6, 1, -2]} rotation-y={Math.PI / 2} scale={[6, 2, 1]} />
-        <Lightformer form="ring" intensity={1.4} color="#ffd9bd" position={[0, 0, 6]} scale={3} />
+      <ambientLight intensity={0.6} />
+      <Environment resolution={128} frames={1} environmentIntensity={1.5}>
+        <Lightformer form="rect" intensity={4} color="#ffffff" position={[0, 5, 2]} scale={[10, 2, 1]} />
+        <Lightformer form="rect" intensity={5} color="#ff6a13" position={[6, 0, -2]} rotation-y={-Math.PI / 2} scale={[6, 2, 1]} />
+        <Lightformer form="rect" intensity={1.2} color="#4aa8ff" position={[-6, 1, -2]} rotation-y={Math.PI / 2} scale={[6, 2, 1]} />
+        <Lightformer form="ring" intensity={3} color="#ffe6d2" position={[0, 0, 6]} scale={5} />
       </Environment>
       <Particles count={lowPower ? 90 : 260} reduced={reduced} />
       <Rig reduced={reduced} />

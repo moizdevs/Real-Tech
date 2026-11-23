@@ -37,7 +37,7 @@ export default function TrustSection() {
             <div
               key={title}
               data-r
-              className="group relative bg-[#08090b]/90 p-8 backdrop-blur-sm transition-colors duration-500 hover:bg-[#0c0d10] sm:p-10"
+              className="group relative bg-[#15171c]/95 p-8 backdrop-blur-sm transition-colors duration-500 hover:bg-[#1b1e24] sm:p-10"
             >
               <span
                 aria-hidden="true"

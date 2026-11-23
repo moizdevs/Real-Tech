@@ -11,6 +11,8 @@ export type SiteConfig = {
   /** Social links. Only non-empty values are rendered. */
   social: { facebook: string; instagram: string; youtube: string };
   mapsQuery: string;
+  /** Real product photos. Put files in /public/photos and set e.g. "/photos/ups.jpg". Empty = illustration is shown. */
+  photos: { ups: string; hybrid: string; sine: string };
 };
 
 export const SITE: SiteConfig = {
@@ -24,6 +26,7 @@ export const SITE: SiteConfig = {
   whatsapp: "",
   social: { facebook: "", instagram: "", youtube: "" },
   mapsQuery: "Real Tech inverter repair near Jhang Road Faisalabad",
+  photos: { ups: "", hybrid: "", sine: "" },
 };
 
 export function whatsappUrl(message: string): string {

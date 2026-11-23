@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden pb-24 pt-32 sm:pb-28 md:justify-center md:pb-16"
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden pb-14 pt-28 md:justify-center md:pb-16"
     >
       {/* depth: vignette + faint grid */}
       <div
@@ -16,7 +16,7 @@ export default function HeroSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 72% 48%, rgba(255,106,19,0.10), transparent 60%), radial-gradient(ellipse 120% 90% at 50% 120%, #050506 35%, transparent 75%)",
+            "radial-gradient(ellipse 70% 60% at 72% 48%, rgba(255,106,19,0.10), transparent 60%), linear-gradient(to top, rgba(11,12,15,0.92) 0%, rgba(11,12,15,0.55) 40%, transparent 62%)",
         }}
       />
       <div
@@ -35,7 +35,7 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
-        <p className="label mb-6 flex items-center gap-3" data-r>
+        <p className="label mb-5 flex items-center gap-3 max-md:hidden" data-r>
           <span className="h-px w-10 bg-volt" />
           {SITE.name} · {SITE.city}
         </p>
@@ -44,18 +44,18 @@ export default function HeroSection() {
           as="h1"
           trigger="now"
           delay={0.15}
-          className="display text-[clamp(3.6rem,11.5vw,10.5rem)] text-bone"
+          className="display text-[clamp(2.6rem,11.4vw,3.8rem)] text-bone sm:text-[clamp(3.4rem,9vw,5rem)] md:text-[clamp(4rem,8.4vw,9rem)]"
           lines={["Power that", <>never backs <span className="text-volt text-glow">down.</span></>]}
         />
 
-        <div className="mt-8 max-w-md" data-r>
+        <div className="mt-6 max-w-md md:mt-8" data-r>
           <p className="display text-2xl tracking-[0.04em] text-bone sm:text-3xl">Buy. Sell. Repair.</p>
           <p className="mt-3 text-[0.98rem] leading-relaxed text-mist">
             Reliable inverter solutions and precision repairs to keep your home and business running.
           </p>
         </div>
 
-        <div className="mt-9 flex flex-wrap items-center gap-3" data-r>
+        <div className="mt-7 flex flex-wrap items-center gap-3 md:mt-9" data-r>
           <Button href="#services" variant="primary">
             Explore Our Services
           </Button>
@@ -69,7 +69,7 @@ export default function HeroSection() {
           </Button>
         </div>
 
-        <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-2 md:mt-16" data-r>
+        <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-2 max-md:hidden md:mt-16" data-r>
           {["New & used inverters", "We buy old & faulty units", "Component-level repair"].map((t) => (
             <li key={t} className="label flex items-center gap-2.5 !text-bone/60">
               <span className="h-1.5 w-1.5 rounded-full bg-volt" />

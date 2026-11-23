@@ -66,7 +66,7 @@ export default function DiagnosticSection() {
         />
 
         <div
-          className="mt-14 overflow-hidden rounded-3xl border border-white/10 bg-[#07080a]/90 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur-md"
+          className="mt-14 overflow-hidden rounded-3xl border border-white/10 bg-[#15171c]/95 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur-md"
           data-r
         >
           {/* title bar */}

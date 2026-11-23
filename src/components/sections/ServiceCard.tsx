@@ -28,7 +28,7 @@ export default function ServiceCard({
   accent = "#ff6a13",
 }: Props) {
   return (
-    <article className="relative border-t border-white/10 py-16 md:py-24">
+    <article className="relative overflow-x-clip border-t border-white/10 py-16 md:py-24">
       <div
         className={`mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 ${
           reverse ? "lg:[&>*:first-child]:order-2" : ""

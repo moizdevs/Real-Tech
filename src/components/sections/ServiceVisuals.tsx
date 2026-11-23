@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/scroll";
 import InverterIllustration, { InverterVariant } from "@/components/illustrations/InverterIllustration";
+import { SITE } from "@/config/site";
 
 /* ------------------------------------------------------------------ */
 /* 01 — BUY: a fan of three product types, hover/tap to bring one forward */
@@ -74,7 +75,12 @@ export function BuyVisual() {
                   filter: abs ? "brightness(0.6)" : "none",
                 }}
               >
-                <InverterIllustration variant={p.id} className="h-full w-full drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]" />
+                {SITE.photos[p.id] ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={SITE.photos[p.id]} alt={p.name} className="h-full w-full rounded-xl object-cover" loading="lazy" />
+                ) : (
+                  <InverterIllustration variant={p.id} className="h-full w-full drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]" />
+                )}
               </button>
             );
           })}
@@ -151,7 +157,7 @@ export function SellVisual() {
 /* ------------------------------------------------------------------ */
 export function RepairVisual() {
   return (
-    <div className="relative mx-auto aspect-[8/5] w-full max-w-[560px] overflow-hidden rounded-2xl border border-white/10 bg-[#07090b]">
+    <div className="relative mx-auto aspect-[8/5] w-full max-w-[560px] overflow-hidden rounded-2xl border border-white/10 bg-[#12151a]">
       <svg viewBox="0 0 800 500" className="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
         {/* traces */}
         <g stroke="rgba(255,255,255,0.12)" strokeWidth="2">

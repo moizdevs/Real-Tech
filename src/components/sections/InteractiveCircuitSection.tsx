@@ -270,7 +270,7 @@ export default function InteractiveCircuitSection() {
   const pick = (id: CompId) => setActive(id);
 
   return (
-    <section ref={root} id="lab" className="relative py-[14vh]">
+    <section ref={root} id="lab" className="relative overflow-x-clip py-[14vh]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <p className="label mb-6 flex items-center gap-3" data-r>
           <span className="h-px w-10 bg-volt" />
@@ -303,8 +303,8 @@ export default function InteractiveCircuitSection() {
               >
                 <defs>
                   <linearGradient id="pcb" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stopColor="#0d1013" />
-                    <stop offset="1" stopColor="#07090b" />
+                    <stop offset="0" stopColor="#1a1e25" />
+                    <stop offset="1" stopColor="#12151a" />
                   </linearGradient>
                   <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
                     <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.07)" />
@@ -381,7 +381,7 @@ export default function InteractiveCircuitSection() {
                   >
                     <Visual id={c.id} />
                     <span
-                      className={`label pointer-events-none absolute -top-7 left-0 whitespace-nowrap rounded bg-black/80 px-2 py-1 !text-[0.62rem] !text-volt transition-opacity duration-300 ${
+                      className={`label pointer-events-none absolute -top-7 left-0 whitespace-nowrap max-md:hidden rounded bg-black/80 px-2 py-1 !text-[0.62rem] !text-volt transition-opacity duration-300 ${
                         on ? "opacity-100" : "opacity-0"
                       }`}
                     >
@@ -414,7 +414,7 @@ export default function InteractiveCircuitSection() {
               ))}
             </ul>
 
-            <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm" aria-live="polite">
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm" aria-live="polite">
               <p className="label !text-volt">{current.tag}</p>
               <h3 className="display mt-3 text-4xl text-bone">{current.name}</h3>
               <p className="mt-4 text-[0.95rem] leading-relaxed text-mist">{current.desc}</p>

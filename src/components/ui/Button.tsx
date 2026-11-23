@@ -7,7 +7,7 @@ import { prefersReducedMotion, scrollToHash } from "@/lib/scroll";
 type Props = {
   href: string;
   children: ReactNode;
-  variant?: "primary" | "ghost" | "whatsapp";
+  variant?: "primary" | "ghost" | "whatsapp" | "dark" | "darkGhost";
   external?: boolean;
   className?: string;
   magnetic?: boolean;
@@ -22,6 +22,8 @@ const variants = {
   primary: "bg-volt text-black hover:bg-volt-soft shadow-[0_0_0_1px_rgba(255,106,19,0.6),0_10px_40px_-10px_rgba(255,106,19,0.7)]",
   ghost: "border border-white/20 text-bone hover:border-white/50 hover:bg-white/5 backdrop-blur-sm",
   whatsapp: "bg-bone text-black hover:bg-white",
+  dark: "bg-black text-bone hover:bg-ink",
+  darkGhost: "border border-black/40 text-black hover:bg-black/10",
 };
 
 export default function Button({

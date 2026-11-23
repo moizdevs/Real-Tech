@@ -71,7 +71,7 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Button href="#contact" magnetic className="hidden !px-5 !py-2.5 md:inline-flex">
+          <Button href="#contact" magnetic className="max-md:!hidden !px-5 !py-2.5">
             Contact Us
           </Button>
           <button

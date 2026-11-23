@@ -81,14 +81,14 @@ function useMaterials() {
       display,
       label,
       shell: new THREE.MeshPhysicalMaterial({
-        color: "#1d1f24",
-        metalness: 0.85,
-        roughness: 0.36,
+        color: "#6c6f76",
+        metalness: 0.5,
+        roughness: 0.4,
         clearcoat: 0.35,
         clearcoatRoughness: 0.35,
       }),
       bezel: new THREE.MeshPhysicalMaterial({
-        color: "#0b0c0f",
+        color: "#17191d",
         metalness: 0.3,
         roughness: 0.3,
         clearcoat: 1,
